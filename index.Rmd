@@ -22,3 +22,108 @@ I am interested in exploring data related to...
 ## Milestone 2
 
 Does a religious background make an LGBT individual less likely to come out? In this study, I will analyze how different religious backgrounds impact gay men, lesbians, bisexuals, and transgender individuals in coming out. I hypothesize that being religious makes people less comfortable coming out to family and friends. I expect that it is easier for people to come out when religion doesn’t play a big role in their life. My sample is composed of 1,197 survey results from gay men, lesbians, bisexuals, and transgender respondents who are 18 years or older. There is diversity in their religious backgrounds, as well as their status of discretion to the public on their sexuality and/or gender identity. The explanatory variable of interest is the religious status of the respondent, meaning their degree of religiousness, and if applicable, their religion. This is measured with two variables. First, =1 is Protestant, = 2 is Roman Catholic, =3 is Agnostic/Atheist, =4 is Nothing in Particular, =5 is Christian, and =6 is Other. Second, the importance of religion is measured as =1 is very important, =2 is somewhat important, =3 is not too important, and =4 is not at all important. The outcome variable is whether the important people in the individual’s life are aware of their sexuality and/or gender identity. The variable is measured as =1 means almost all know, =2 means some of them, =3 means a few, and =4 means none. The data comes from the KnowledgePanel research group in 2013. If the data shows that individuals with a low importance in religion have come out to almost all their loved ones, my hypothesis would be supported. If individuals with a heavy emphasis on religion come out at higher or equal levels as non-religious individuals, my hypothesis would be disproven. The additional variable of which religion they identify as can provide nuance in understanding which religions provide a more/less welcoming view towards the LGBT community coming out. When I run a regression on coming out status on non-religious individuals, a positive, significant coefficient would support my claim. 
+
+```{r setup}
+
+library(haven)
+library(readr)
+
+library(haven)
+lgbt <- read_sav("pew2013lgbtpublicdatarelease (1)/pew2013lgbtpublicdatarelease.sav")
+
+library(tidyverse)
+library(ggplot2)
+library(broom)
+library(dplyr)
+```
+
+
+```{r}
+
+lgbt1 <- lgbt |>
+  select(NEWCASEID, LGBT, Q31, Q42, Q49, Q66_A:Q67, religNEW, IMP) |>
+  mutate(LGBT = case_when(
+    LGBT == 1 ~ "Lesbian",
+    LGBT == 2 ~ "Gay",
+    LGBT == 3 ~ "Bisexual",
+    LGBT == 4 ~ "Transgender",
+    LGBT == 5 ~ "Non-LGBT"
+  )) |>
+  mutate(LGBTQ_importance = case_when(
+    Q31 == 1 ~ "Extremely Important",
+    Q31 == 2 ~ "Very Important",
+    Q31 == 3 ~ "Somewhat Important",
+    Q31 == 4 ~ "Not too important",
+    Q31 == 5 ~ "Not at all important"
+  )) |>
+  select(-Q31) |>
+  rename("ComeOutAge" = "Q42") |>
+  mutate(Important_People = case_when(
+    Q49 == 1 ~ "All or most of them",
+    Q49 == 2 ~ "Some of them",
+    Q49 == 3 ~ "Only a few of them",
+    Q49 == 4 ~ "None of them"
+  )) |>
+  rename("Evangelical" = "Q66_A",
+         "Catholic" = "Q66_B",
+         "Jewish" = "Q66_C",
+         "Muslim" = "Q66_D",
+         "Mormon" = "Q66_E",
+         "Non-Evangelical Protestant" = "Q66_F") |>
+  mutate(Religious_Conflict = if_else(Q67 == 1, 
+                                      "Conflict",
+                                      "No Conflict")) |>
+  select(-Q67) |>
+  mutate(Religion = case_when(
+    religNEW == 1 ~ "Protestant",
+    religNEW == 2 ~ "Roman Catholic",
+    religNEW == 3 ~ "Agnostic/Atheist",
+    religNEW == 4 ~ "Nothing",
+    religNEW == 5 ~ "Christian",
+    religNEW == 6 ~ "Other"
+  )) |>
+  mutate(Religion_Importance = case_when(
+    IMP == 1 ~ "Very important",
+    IMP == 2 ~ "Somewhat important",
+    IMP == 3 ~ "Not too important",
+    IMP == 4 ~ "Not at all important"
+  )) |>
+  filter(!Evangelical == -1)
+
+
+```
+
+```{r}
+
+religion_means <- lgbt1 |>
+  summarize(Evangelical_Mean = mean(Evangelical),
+            Catholic_Mean = mean(Catholic),
+            Jewish_Mean = mean(Jewish),
+            Muslim_Mean = mean(Muslim),
+            Mormon_Mean = mean(Mormon),
+            NonEvangelical_Mean = mean(`Non-Evangelical Protestant`)) |>
+  knitr::kable(digits = 3)
+  
+
+religion_means
+```
+```{r}
+
+imp_binary <- lgbt1 |>
+  filter(!Q49 == -1) |>
+  mutate(Religious = if_else((IMP == 1 | IMP == 2),
+                              "Important",
+                              "Not Important"))
+
+## For people who consider religion important in their lives, how many have come out to most important people in their life?
+
+imp_binary |>
+  group_by(Religious, Important_People) |>
+  summarize(n = n()) |>
+  pivot_wider(names_from = Important_People,
+              values_from = n)
+
+
+```
+
+
