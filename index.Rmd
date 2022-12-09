@@ -7,11 +7,16 @@ output:
     self_contained: false
 ---
 
-## Milestone 2
+## Introduction
+This projects explores the relationship between religion and coming out rates among Lesbian, Gay, Bisexual, and/or Transgender (LGBT) individuals. To be more specific, I attempted to figure out if being more religious made LGBT individuals more or less likely to come out, if it had any impact at all. This tied in with data surrounding a respondent's personal experiences with religious conflict, as well as how important being LGBT was to them in relation. Finally, I looked at the perception surrounding different religions and their acceptance towards the LGBT community.
 
-Does a religious background make an LGBT individual less likely to come out? In this study, I will analyze how different religious backgrounds impact gay men, lesbians, bisexuals, and transgender individuals in coming out. I hypothesize that being religious makes people less comfortable coming out to family and friends. I expect that it is easier for people to come out when religion doesn’t play a big role in their life. My sample is composed of 1,197 survey results from gay men, lesbians, bisexuals, and transgender respondents who are 18 years or older. There is diversity in their religious backgrounds, as well as their status of discretion to the public on their sexuality and/or gender identity. The explanatory variable of interest is the religious status of the respondent, meaning their degree of religiousness, and if applicable, their religion. This is measured with two variables. First, =1 is Protestant, = 2 is Roman Catholic, =3 is Agnostic/Atheist, =4 is Nothing in Particular, =5 is Christian, and =6 is Other. Second, the importance of religion is measured as =1 is very important, =2 is somewhat important, =3 is not too important, and =4 is not at all important. The outcome variable is whether the important people in the individual’s life are aware of their sexuality and/or gender identity. The variable is measured as =1 means almost all know, =2 means some of them, =3 means a few, and =4 means none. The data comes from the KnowledgePanel research group in 2013. If the data shows that individuals with a low importance in religion have come out to almost all their loved ones, my hypothesis would be supported. If individuals with a heavy emphasis on religion come out at higher or equal levels as non-religious individuals, my hypothesis would be disproven. The additional variable of which religion they identify as can provide nuance in understanding which religions provide a more/less welcoming view towards the LGBT community coming out. When I run a regression on coming out status on non-religious individuals, a positive, significant coefficient would support my claim. 
+## Data and research design
+To answer this question, I used data from [Pew Research Center] (https://www.pewresearch.org/social-trends/dataset/2013-lgbt-survey/). The survey data was acquired in April 2013, with responses from 1,197 self-identifying LGBT members above the age of 18. The survey asked a multitude of questions, including demographics, political opinions, social perceptions, family background, and religious importance.
 
-```{r setup}
+The research design is observational, as the explanatory variable (the importance of religion in the respondents' life) is not forced onto the respondent as a "treatment." Researchers, instead, observed a naturally assigned treatment, and I have attempted to find a correlation between the results.
+
+
+```{r setup, include = FALSE}
 
 library(haven)
 library(readr)
@@ -26,7 +31,7 @@ library(dplyr)
 ```
 
 
-```{r}
+```{r, include = FALSE}
 
 lgbt1 <- lgbt |>
   select(NEWCASEID, LGBT, Q31, Q42, Q49, Q66_A:Q67, religNEW, IMP) |>
@@ -44,13 +49,25 @@ lgbt1 <- lgbt |>
     Q31 == 4 ~ "Not too important",
     Q31 == 5 ~ "Not at all important"
   )) |>
-  select(-Q31) |>
+  mutate(LGBTQ_importancenum = case_when(
+    Q31 == 1 ~ 5,
+    Q31 == 2 ~ 4,
+    Q31 == 3 ~ 3,
+    Q31 == 4 ~ 2,
+    Q31 == 5 ~ 1
+  )) |>
   rename("ComeOutAge" = "Q42") |>
-  mutate(Important_People = case_when(
+  mutate(Important_People = case_when(  
     Q49 == 1 ~ "All or most of them",
     Q49 == 2 ~ "Some of them",
     Q49 == 3 ~ "Only a few of them",
     Q49 == 4 ~ "None of them"
+  )) |>
+    mutate(Important_People14 = case_when(  
+    Q49 == 1 ~ 4,
+    Q49 == 2 ~ 3,
+    Q49 == 3 ~ 2,
+    Q49 == 4 ~ 1
   )) |>
   rename("Evangelical" = "Q66_A",
          "Catholic" = "Q66_B",
@@ -61,7 +78,7 @@ lgbt1 <- lgbt |>
   mutate(Religious_Conflict = if_else(Q67 == 1, 
                                       "Conflict",
                                       "No Conflict")) |>
-  select(-Q67) |>
+  rename (Religious_Conflictnum = Q67) |>
   mutate(Religion = case_when(
     religNEW == 1 ~ "Protestant",
     religNEW == 2 ~ "Roman Catholic",
@@ -76,10 +93,117 @@ lgbt1 <- lgbt |>
     IMP == 3 ~ "Not too important",
     IMP == 4 ~ "Not at all important"
   )) |>
+  mutate(Religion_Importance14 = case_when(
+    IMP == 1 ~ 4,
+    IMP == 2 ~ 3,
+    IMP == 3 ~ 2,
+    IMP == 4 ~ 1
+  )) |>
+  mutate(importance_factor = fct_reorder(
+  .x = Religion_Importance14,
+  .f = Religion_Importance)) |>  
+   mutate(people_factor = fct_reorder(
+  .x = Important_People14,
+  .f = Important_People)) |>
+  mutate(religion_factor = fct_reorder(
+  .x = religNEW,
+  .f = Religion)) |>
   filter(!Evangelical == -1)
+```
+
+The outcome variable is an index of whether the important people in the individual’s life are aware of their sexuality and/or gender identity. The variable is measured as =4 means almost all know, =3 means some of them, =2 means a few, and =1 means none. To summarize, the mean ranges from 1 to 4 (whole numbers) with a mean of 2.28 and a median of 4.
+
+
+```{r, outcome distribution, echo = FALSE }
+
+lgbt1 |>
+  drop_na() |>
+  ggplot(aes(x = people_factor)) + 
+  geom_bar() +
+  labs(x = "Coming out to Important People",
+       y = "Count",
+       title = "Range of People Respondents Have Come Out To")
+
+```
+The explanatory variable of interest is the religious status of the respondent, meaning their degree of religiousness, and if applicable, their religion. This is measured with two variables. 
+
+First, we look at a respondent's actual religion, which is important to know for later, when thinking about confounding bias. A majority of the respondents were either Protestant or practiced under no religion.
+
+```{r }
+
+lgbt1 |>
+  drop_na() |>
+  ggplot(aes(x = religion_factor)) + 
+  geom_bar() +
+  labs(
+    title = "Religious Distribution of Respondents",
+    x = "Religion",
+    y = "Count")
+
+```
+
+Second, the importance of religion is measured as =1 is very important, =2 is somewhat important, =3 is not too important, and =4 is not at all important. The mean of religious importance across respondents is 1.31, and the median is 2. 
+
+```{r }
+
+lgbt1 |>
+  drop_na() |>
+  ggplot(aes(x = importance_factor)) + 
+  geom_bar() +
+  labs(
+    title = "Religious Importance of Respondents",
+    x = "Religious Importance",
+    y = "Count")
 
 
 ```
+## Results
+
+Without regressing the data, the bivariate relationship between the importance of religion and openness in coming out can be seen below. Each bar represents the mean index at which respondents in each of the four strengths of religiousness responded to coming out. A mean of 0 would represent that all respondents of the specific religious strength came out to nobody important, while a mean of 4 would represent that all respondents of the specific religious strength came out to everybody important.
+
+```{r}
+
+lgbt1 |>
+  drop_na(Religion_Importance14) |>
+  group_by(importance_factor) |>
+  summarize(Important_People14 = mean(Important_People14, na.rm = TRUE)) |>
+  ggplot(aes(x = importance_factor, y = Important_People14)) +
+  geom_col(fill = "steelblue") +
+  labs(x = "Importance of Religion",
+       y = "Mean Index of Coming out to Important People",
+       title = "Index of Coming Out Based on Importance of Religion")
+
+```
+The bivariate plot does not suggest that there is any strong relationship between religiousness and coming out, as the means are only fractionally different. However, the highest response to coming out is among not too and not at all religious individuals. The regression analysis can help uncover any significant relationships, if they exist.
+
+The table below looks more generally at self-proclaimed religious vs non-religious respondents, and the proportion at which they have come out. To note, there are more LGBT individuals who responded that they are not religious. Among those individuals, most have come out to all/a majority of important people in their lives. Among religious LGBT respondents, most have also come out to all/a majority of important people in their lives, however a greater proportion say that they have come out to none of the important people in their life, relative to those who are not religious.
+There does not seem to be a huge impact of religiousness on coming out to important people in your life. Yet still, it's interesting that these same respondents who have come out, still identified that all religion are generally unfriendly towards the LGBT, as highlighted in the next table.
+
+```{r}
+
+imp_binary <- lgbt1 |>
+  filter(!Q49 == -1) |>
+  mutate(Religious = if_else((IMP == 1 | IMP == 2),
+                              "Important",
+                              "Not Important")) |> 
+  mutate(Important_People1 = if_else((Q49 == 1 | Q49 == 2),
+                                    "Most of them",
+                                    "Few of them"))
+
+## For people who consider religion important in their lives, how many have come out to most important people in their life?
+
+imp_binary |>
+  group_by(Religious, Important_People) |>
+  summarize(n = n()) |>
+  mutate(n = n/sum(n)) |>
+  pivot_wider(names_from = Important_People,
+              values_from = n) |>
+  select(Religious, 'All or most of them', 'Some of them', 'Only a few of them', 'None of them') |>
+  knitr::kable(digits = 2)
+
+```
+When respondents were asked what they assumed numerous religions felt about supporting the LGBT community, they responded with the displayed results. It's important to note that there may be some confounding bias in what respondents personally identify as, what religions they are frequently exposed to, or what specific interactions they've had with different religious groups. 
+The data showcases that, on the scale of 1-3, where 3 is the most unfriendly, Muslims were perceived to be the least friendly to the LGBT community. The Jewish community was seen to be the most friendly with a score of 2.299. The difference in means between the Muslim and Jewish groups was 0.59, so the range isn't very large. Another takeaway from this visualization is that all the means from the respondents on these religions shifted towards the unfriendly side of the spectrum. No religion was identified as friendly towards the LGBT community, let alone neutral.
 
 ```{r}
 ## 1- Friendly, 2- Neutral, 3- Unfriendly
@@ -96,29 +220,63 @@ religion_means <- lgbt1 |>
 
 religion_means
 ```
-When respondents were asked what they assumed numerous religions felt about supporting the LGBT community, they responded the displayed results. It's important to note that there may be some confounding bias in what respondents personally identify as, what religions they are frequently exposed to, or what specific interactions they've had with different religious groups. 
-The data showcases that, on the scale of 1-3, where 3 is the most unfriendly, Muslims were perceived to be the least friendly to the LGBT community. The Jewish community was seen to be the most friendly with a score of 2.299. The difference in means between the Muslim and Jewish groups was 0.59, so the variation isn't very large. Another takeaway from this visualization is that all the means from the respondents on these religions shifted towards the unfriendly side of the spectrum. No religion was identified as friendly towards the LGBT community, let alone neutral.
 
+## Permutations
 
+The estimated proportional difference between those who consider religion important versus those who don't consider religion important is -0.014. This means that those who consider religion important came out, on average, at 0.014 units less than nonreligious people. 
+The p-value for the test of the null hypothesis that there would be no difference in the proportion of coming out between religious and nonreligious individuals is 0.588. With a standard test level of 0.05, we cannot reject this null hypothesis, so we are not confident that there exists a definite relationship between religion and coming out.
+With failing to reject a null hypothesis, we risk a type II error, meaning we potentially missed out on a meaningful relationship. Compared to a type I error (false-positive), type II error is less dangerous and also unlikely considering this p-value fails tests levels of 0.05, 0.1, and 0.5.
 
 ```{r}
 
-imp_binary <- lgbt1 |>
-  filter(!Q49 == -1) |>
-  mutate(Religious = if_else((IMP == 1 | IMP == 2),
-                              "Important",
-                              "Not Important"))
+library(infer)
+set.seed(02138)
 
-## For people who consider religion important in their lives, how many have come out to most important people in their life?
+ate_rel <- imp_binary |>
+  specify(Important_People1 ~ Religious, success = "Most of them") |>
+  calculate(stat = "diff in props",
+            order = c("Important", "Not Important"))
+ate_rel
 
-imp_binary |>
-  group_by(Religious, Important_People) |>
-  summarize(n = n()) |>
-  pivot_wider(names_from = Important_People,
-              values_from = n) |>
-  knitr::kable()
+ate_rel_null_dist <- imp_binary |>
+  specify(Important_People1 ~ Religious, success = "Most of them") |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in props",
+            order = c("Important", "Not Important"))
+  
+ate_rel_p <- imp_binary |>
+  specify(Important_People1 ~ Religious, success = "Most of them") |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in props",
+            order = c("Important", "Not Important")) |>
+  get_p_value(obs_stat = ate_rel, direction = "both")
+ate_rel_p
 
-## Things to fix: how to make each row a proportion of itself, change column names to be in specific order (not alphabetical)
+
 ```
-With this table, I hoped to uncover the discrepancy between religious vs nonreligious LGBT respondents coming out to important people in their lives. One observation is that there are more LGBT individuals who don't consider religion important to them. Among those individuals, most have come out to all/a majority of important people in their lives. Among relgious LGBT respondents, most have also come out to all/a majority of important people in their lives, however a greater proportion say that they have come out to none of the important people in their life, relative to those who are not religious.
-There does not seem to be a huge impact of considering religion important to you, on coming out to important people in your life. Yet still, it's interesting that these same respondents who have come out, still identified all relgions are generally unfriendly towards the LGBT. A further data point that would be useful to explore is the reaction of the people that the respondents came out to, as well as what their religious views were. 
+
+## Regression Results
+
+Results from two regression models are below. The first is a bivariate model, which regresses the detainer rate on ideal point preferences. The second is a multivariate model which includes county-level covariates, like the proportion of foreigners and the proportion of unemployed labor force participants, and a binary indicator for whether the county sheriff’s election was competitive or not.
+
+The first regression model is a bivariate model, regressing the coming out index on religious importance.
+
+```{r}
+
+lgbt_reg <- lm(formula = Important_People14 ~ importance_factor, data = lgbt1)
+tidy(lgbt_reg)
+
+```
+in relation to religion importance of 1, bivariate 
+p value of 2 and 4
+
+```{r}
+
+lgbt_multireg <- lm(Important_People14 ~ as.factor(Religion_Importance14) + as.factor(Religious_Conflictnum) + as.factor(LGBTQ_importancenum), data = lgbt1)
+
+tidy(lgbt_multireg)
+
+```
+

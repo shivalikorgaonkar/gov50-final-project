@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","pew2013lgbtpublicdatarelease (1)/~$w2013LGBTcodebook.docx","pew2013lgbtpublicdatarelease (1)/Pew2013LGBTcodebook.docx","pew2013lgbtpublicdatarelease (1)/pew2013lgbtpublicdatarelease.sav"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/outcome distribution-1.png","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js","pew2013lgbtpublicdatarelease (1)/~$w2013LGBTcodebook.docx","pew2013lgbtpublicdatarelease (1)/Pew2013LGBTcodebook.docx","pew2013lgbtpublicdatarelease (1)/pew2013lgbtpublicdatarelease.sav"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1517,75 +1517,122 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="milestone-2">Milestone 2</h2>
-<p>Does a religious background make an LGBT individual less likely to come out? In this study, I will analyze how different religious backgrounds impact gay men, lesbians, bisexuals, and transgender individuals in coming out. I hypothesize that being religious makes people less comfortable coming out to family and friends. I expect that it is easier for people to come out when religion doesn’t play a big role in their life. My sample is composed of 1,197 survey results from gay men, lesbians, bisexuals, and transgender respondents who are 18 years or older. There is diversity in their religious backgrounds, as well as their status of discretion to the public on their sexuality and/or gender identity. The explanatory variable of interest is the religious status of the respondent, meaning their degree of religiousness, and if applicable, their religion. This is measured with two variables. First, =1 is Protestant, = 2 is Roman Catholic, =3 is Agnostic/Atheist, =4 is Nothing in Particular, =5 is Christian, and =6 is Other. Second, the importance of religion is measured as =1 is very important, =2 is somewhat important, =3 is not too important, and =4 is not at all important. The outcome variable is whether the important people in the individual’s life are aware of their sexuality and/or gender identity. The variable is measured as =1 means almost all know, =2 means some of them, =3 means a few, and =4 means none. The data comes from the KnowledgePanel research group in 2013. If the data shows that individuals with a low importance in religion have come out to almost all their loved ones, my hypothesis would be supported. If individuals with a heavy emphasis on religion come out at higher or equal levels as non-religious individuals, my hypothesis would be disproven. The additional variable of which religion they identify as can provide nuance in understanding which religions provide a more/less welcoming view towards the LGBT community coming out. When I run a regression on coming out status on non-religious individuals, a positive, significant coefficient would support my claim.</p>
+<h2 id="introduction">Introduction</h2>
+<p>This projects explores the relationship between religion and coming out rates among Lesbian, Gay, Bisexual, and/or Transgender (LGBT) individuals. To be more specific, I attempted to figure out if being more religious made LGBT individuals more or less likely to come out, if it had any impact at all. This tied in with data surrounding a respondent’s personal experiences with religious conflict, as well as how important being LGBT was to them in relation. Finally, I looked at the perception surrounding different religions and their acceptance towards the LGBT community.</p>
+<h2 id="data-and-research-design">Data and research design</h2>
+<p>To answer this question, I used data from [Pew Research Center] (<a href="https://www.pewresearch.org/social-trends/dataset/2013-lgbt-survey/" class="uri">https://www.pewresearch.org/social-trends/dataset/2013-lgbt-survey/</a>). The survey data was acquired in April 2013, with responses from 1,197 self-identifying LGBT members above the age of 18. The survey asked a multitude of questions, including demographics, political opinions, social perceptions, family background, and religious importance.</p>
+<p>The research design is observational, as the explanatory variable (the importance of religion in the respondents’ life) is not forced onto the respondent as a “treatment.” Researchers, instead, observed a naturally assigned treatment, and I have attempted to find a correlation between the results.</p>
+<p>The outcome variable is an index of whether the important people in the individual’s life are aware of their sexuality and/or gender identity. The variable is measured as =4 means almost all know, =3 means some of them, =2 means a few, and =1 means none. To summarize, the mean ranges from 1 to 4 (whole numbers) with a mean of 2.28 and a median of 4.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/outcome%20distribution-1.png" width="624" /></p>
+</div>
+<p>The explanatory variable of interest is the religious status of the respondent, meaning their degree of religiousness, and if applicable, their religion. This is measured with two variables.</p>
+<p>First, we look at a respondent’s actual religion, which is important to know for later, when thinking about confounding bias. A majority of the respondents were either Protestant or practiced under no religion.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://haven.tidyverse.org'>haven</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span></span>
-<span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://haven.tidyverse.org'>haven</a></span><span class='op'>)</span></span>
-<span><span class='va'>lgbt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://haven.tidyverse.org/reference/read_spss.html'>read_sav</a></span><span class='op'>(</span><span class='st'>"pew2013lgbtpublicdatarelease (1)/pew2013lgbtpublicdatarelease.sav"</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lgbt1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>religion_factor</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Religious Distribution of Respondents"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Religion"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Count"</span><span class='op'>)</span></span></code></pre>
 </div>
+<p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
+<p>Second, the importance of religion is measured as =1 is very important, =2 is somewhat important, =3 is not too important, and =4 is not at all important. The mean of religious importance across respondents is 1.31, and the median is 2.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lgbt1</span> <span class='op'>&lt;-</span> <span class='va'>lgbt</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>NEWCASEID</span>, <span class='va'>LGBT</span>, <span class='va'>Q31</span>, <span class='va'>Q42</span>, <span class='va'>Q49</span>, <span class='va'>Q66_A</span><span class='op'>:</span><span class='va'>Q67</span>, <span class='va'>religNEW</span>, <span class='va'>IMP</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>LGBT <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>LGBT</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Lesbian"</span>,</span>
-<span>    <span class='va'>LGBT</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>"Gay"</span>,</span>
-<span>    <span class='va'>LGBT</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>"Bisexual"</span>,</span>
-<span>    <span class='va'>LGBT</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>"Transgender"</span>,</span>
-<span>    <span class='va'>LGBT</span> <span class='op'>==</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>"Non-LGBT"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>LGBTQ_importance <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>Q31</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Extremely Important"</span>,</span>
-<span>    <span class='va'>Q31</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>"Very Important"</span>,</span>
-<span>    <span class='va'>Q31</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>"Somewhat Important"</span>,</span>
-<span>    <span class='va'>Q31</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>"Not too important"</span>,</span>
-<span>    <span class='va'>Q31</span> <span class='op'>==</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>"Not at all important"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>Q31</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"ComeOutAge"</span> <span class='op'>=</span> <span class='st'>"Q42"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Important_People <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>Q49</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"All or most of them"</span>,</span>
-<span>    <span class='va'>Q49</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>"Some of them"</span>,</span>
-<span>    <span class='va'>Q49</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>"Only a few of them"</span>,</span>
-<span>    <span class='va'>Q49</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>"None of them"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span><span class='st'>"Evangelical"</span> <span class='op'>=</span> <span class='st'>"Q66_A"</span>,</span>
-<span>         <span class='st'>"Catholic"</span> <span class='op'>=</span> <span class='st'>"Q66_B"</span>,</span>
-<span>         <span class='st'>"Jewish"</span> <span class='op'>=</span> <span class='st'>"Q66_C"</span>,</span>
-<span>         <span class='st'>"Muslim"</span> <span class='op'>=</span> <span class='st'>"Q66_D"</span>,</span>
-<span>         <span class='st'>"Mormon"</span> <span class='op'>=</span> <span class='st'>"Q66_E"</span>,</span>
-<span>         <span class='st'>"Non-Evangelical Protestant"</span> <span class='op'>=</span> <span class='st'>"Q66_F"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Religious_Conflict <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>Q67</span> <span class='op'>==</span> <span class='fl'>1</span>, </span>
-<span>                                      <span class='st'>"Conflict"</span>,</span>
-<span>                                      <span class='st'>"No Conflict"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>Q67</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Religion <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>religNEW</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Protestant"</span>,</span>
-<span>    <span class='va'>religNEW</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>"Roman Catholic"</span>,</span>
-<span>    <span class='va'>religNEW</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>"Agnostic/Atheist"</span>,</span>
-<span>    <span class='va'>religNEW</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>"Nothing"</span>,</span>
-<span>    <span class='va'>religNEW</span> <span class='op'>==</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>"Christian"</span>,</span>
-<span>    <span class='va'>religNEW</span> <span class='op'>==</span> <span class='fl'>6</span> <span class='op'>~</span> <span class='st'>"Other"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Religion_Importance <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Very important"</span>,</span>
-<span>    <span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>"Somewhat important"</span>,</span>
-<span>    <span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>"Not too important"</span>,</span>
-<span>    <span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>"Not at all important"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>Evangelical</span> <span class='op'>==</span> <span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lgbt1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>importance_factor</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Religious Importance of Respondents"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Religious Importance"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Count"</span><span class='op'>)</span></span></code></pre>
 </div>
+<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
+<h2 id="results">Results</h2>
+<p>Without regressing the data, the bivariate relationship between the importance of religion and openness in coming out can be seen below. Each bar represents the mean index at which respondents in each of the four strengths of religiousness responded to coming out. A mean of 0 would represent that all respondents of the specific religious strength came out to nobody important, while a mean of 4 would represent that all respondents of the specific religious strength came out to everybody important.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lgbt1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='va'>Religion_Importance14</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>importance_factor</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Important_People14 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Important_People14</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>importance_factor</span>, y <span class='op'>=</span> <span class='va'>Important_People14</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"steelblue"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Importance of Religion"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Mean Index of Coming out to Important People"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"Index of Coming Out Based on Importance of Religion"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>The bivariate plot does not suggest that there is any strong relationship between religiousness and coming out, as the means are only fractionally different. However, the highest response to coming out is among not too and not at all religious individuals. The regression analysis can help uncover any significant relationships, if they exist.</p>
+<p>The table below looks more generally at self-proclaimed religious vs non-religious respondents, and the proportion at which they have come out. To note, there are more LGBT individuals who responded that they are not religious. Among those individuals, most have come out to all/a majority of important people in their lives. Among religious LGBT respondents, most have also come out to all/a majority of important people in their lives, however a greater proportion say that they have come out to none of the important people in their life, relative to those who are not religious.
+There does not seem to be a huge impact of religiousness on coming out to important people in your life. Yet still, it’s interesting that these same respondents who have come out, still identified that all religion are generally unfriendly towards the LGBT, as highlighted in the next table.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>imp_binary</span> <span class='op'>&lt;-</span> <span class='va'>lgbt1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>Q49</span> <span class='op'>==</span> <span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Religious <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span>,</span>
+<span>                              <span class='st'>"Important"</span>,</span>
+<span>                              <span class='st'>"Not Important"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Important_People1 <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>Q49</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>Q49</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span>,</span>
+<span>                                    <span class='st'>"Most of them"</span>,</span>
+<span>                                    <span class='st'>"Few of them"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>## For people who consider religion important in their lives, how many have come out to most important people in their life?</span></span>
+<span></span>
+<span><span class='va'>imp_binary</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Religious</span>, <span class='va'>Important_People</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>Important_People</span>,</span>
+<span>              values_from <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Religious</span>, <span class='st'>'All or most of them'</span>, <span class='st'>'Some of them'</span>, <span class='st'>'Only a few of them'</span>, <span class='st'>'None of them'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 25%" />
+<col style="width: 16%" />
+<col style="width: 24%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Religious</th>
+<th style="text-align: right;">All or most of them</th>
+<th style="text-align: right;">Some of them</th>
+<th style="text-align: right;">Only a few of them</th>
+<th style="text-align: right;">None of them</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Important</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Not Important</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When respondents were asked what they assumed numerous religions felt about supporting the LGBT community, they responded with the displayed results. It’s important to note that there may be some confounding bias in what respondents personally identify as, what religions they are frequently exposed to, or what specific interactions they’ve had with different religious groups.
+The data showcases that, on the scale of 1-3, where 3 is the most unfriendly, Muslims were perceived to be the least friendly to the LGBT community. The Jewish community was seen to be the most friendly with a score of 2.299. The difference in means between the Muslim and Jewish groups was 0.59, so the range isn’t very large. Another takeaway from this visualization is that all the means from the respondents on these religions shifted towards the unfriendly side of the spectrum. No religion was identified as friendly towards the LGBT community, let alone neutral.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## 1- Friendly, 2- Neutral, 3- Unfriendly</span></span>
@@ -1633,66 +1680,90 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tbody>
 </table>
 </div>
-<p>When respondents were asked what they assumed numerous religions felt about supporting the LGBT community, they responded the displayed results. It’s important to note that there may be some confounding bias in what respondents personally identify as, what religions they are frequently exposed to, or what specific interactions they’ve had with different religious groups.
-The data showcases that, on the scale of 1-3, where 3 is the most unfriendly, Muslims were perceived to be the least friendly to the LGBT community. The Jewish community was seen to be the most friendly with a score of 2.299. The difference in means between the Muslim and Jewish groups was 0.59, so the variation isn’t very large. Another takeaway from this visualization is that all the means from the respondents on these religions shifted towards the unfriendly side of the spectrum. No religion was identified as friendly towards the LGBT community, let alone neutral.</p>
+<h2 id="permutations">Permutations</h2>
+<p>The estimated proportional difference between those who consider religion important versus those who don’t consider religion important is -0.014. This means that those who consider religion important came out, on average, at 0.014 units less than nonreligious people.
+The p-value for the test of the null hypothesis that there would be no difference in the proportion of coming out between religious and nonreligious individuals is 0.588. With a standard test level of 0.05, we cannot reject this null hypothesis, so we are not confident that there exists a definite relationship between religion and coming out.
+With failing to reject a null hypothesis, we risk a type II error, meaning we potentially missed out on a meaningful relationship. Compared to a type I error (false-positive), type II error is less dangerous and also unlikely considering this p-value fails tests levels of 0.05, 0.1, and 0.5.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>imp_binary</span> <span class='op'>&lt;-</span> <span class='va'>lgbt1</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>Q49</span> <span class='op'>==</span> <span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Religious <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>IMP</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span>,</span>
-<span>                              <span class='st'>"Important"</span>,</span>
-<span>                              <span class='st'>"Not Important"</span><span class='op'>)</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>02138</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='co'>## For people who consider religion important in their lives, how many have come out to most important people in their life?</span></span>
-<span></span>
-<span><span class='va'>imp_binary</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Religious</span>, <span class='va'>Important_People</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>Important_People</span>,</span>
-<span>              values_from <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>ate_rel</span> <span class='op'>&lt;-</span> <span class='va'>imp_binary</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>Important_People1</span> <span class='op'>~</span> <span class='va'>Religious</span>, success <span class='op'>=</span> <span class='st'>"Most of them"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>,</span>
+<span>            order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Important"</span>, <span class='st'>"Not Important"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>ate_rel</span></span></code></pre>
 </div>
-<table>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 25%" />
-<col style="width: 16%" />
-<col style="width: 24%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Religious</th>
-<th style="text-align: right;">All or most of them</th>
-<th style="text-align: right;">None of them</th>
-<th style="text-align: right;">Only a few of them</th>
-<th style="text-align: right;">Some of them</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Important</td>
-<td style="text-align: right;">260</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">83</td>
-<td style="text-align: right;">120</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Not Important</td>
-<td style="text-align: right;">394</td>
-<td style="text-align: right;">37</td>
-<td style="text-align: right;">111</td>
-<td style="text-align: right;">123</td>
-</tr>
-</tbody>
-</table>
+<pre><code>Response: Important_People1 (factor)
+Explanatory: Religious (factor)
+# A tibble: 1 × 1
+     stat
+    &lt;dbl&gt;
+1 -0.0144</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Things to fix: how to make each row a proportion of itself, change column names to be in specific order (not alphabetical)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ate_rel_null_dist</span> <span class='op'>&lt;-</span> <span class='va'>imp_binary</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>Important_People1</span> <span class='op'>~</span> <span class='va'>Religious</span>, success <span class='op'>=</span> <span class='st'>"Most of them"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>,</span>
+<span>            order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Important"</span>, <span class='st'>"Not Important"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  </span>
+<span><span class='va'>ate_rel_p</span> <span class='op'>&lt;-</span> <span class='va'>imp_binary</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>Important_People1</span> <span class='op'>~</span> <span class='va'>Religious</span>, success <span class='op'>=</span> <span class='st'>"Most of them"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>,</span>
+<span>            order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Important"</span>, <span class='st'>"Not Important"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>ate_rel</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span><span class='va'>ate_rel_p</span></span></code></pre>
 </div>
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.588</code></pre>
 </div>
-<p>With this table, I hoped to uncover the discrepancy between religious vs nonreligious LGBT respondents coming out to important people in their lives. One observation is that there are more LGBT individuals who don’t consider religion important to them. Among those individuals, most have come out to all/a majority of important people in their lives. Among relgious LGBT respondents, most have also come out to all/a majority of important people in their lives, however a greater proportion say that they have come out to none of the important people in their life, relative to those who are not religious.
-There does not seem to be a huge impact of considering religion important to you, on coming out to important people in your life. Yet still, it’s interesting that these same respondents who have come out, still identified all relgions are generally unfriendly towards the LGBT. A further data point that would be useful to explore is the reaction of the people that the respondents came out to, as well as what their religious views were.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="regression-results">Regression Results</h2>
+<p>Results from two regression models are below. The first is a bivariate model, which regresses the detainer rate on ideal point preferences. The second is a multivariate model which includes county-level covariates, like the proportion of foreigners and the proportion of unemployed labor force participants, and a binary indicator for whether the county sheriff’s election was competitive or not.</p>
+<p>The first regression model is a bivariate model, regressing the coming out index on religious importance.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lgbt_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>Important_People14</span> <span class='op'>~</span> <span class='va'>importance_factor</span>, data <span class='op'>=</span> <span class='va'>lgbt1</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>lgbt_reg</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 4 × 5
+  term                                estimate std.e…¹ stati…² p.value
+  &lt;chr&gt;                                  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)                           3.35    0.0468   71.5   0     
+2 importance_factorNot too important   -0.0786  0.0759   -1.03  0.301 
+3 importance_factorSomewhat important  -0.174   0.0749   -2.33  0.0200
+4 importance_factorVery important      -0.0817  0.0775   -1.05  0.292 
+# … with abbreviated variable names ¹​std.error, ²​statistic</code></pre>
+</div>
+<p>in relation to religion importance of 1, bivariate
+p value of 2 and 4</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lgbt_multireg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Important_People14</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>Religion_Importance14</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>Religious_Conflictnum</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>LGBTQ_importancenum</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>lgbt1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>lgbt_multireg</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 10 × 5
+   term                              estimate std.e…¹ stati…²  p.value
+   &lt;chr&gt;                                &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+ 1 (Intercept)                         3.21    0.431    7.44  2.02e-13
+ 2 as.factor(Religion_Importance14)2  -0.0381  0.0692  -0.550 5.83e- 1
+ 3 as.factor(Religion_Importance14)3  -0.201   0.0697  -2.88  4.02e- 3
+ 4 as.factor(Religion_Importance14)4  -0.0837  0.0722  -1.16  2.47e- 1
+ 5 as.factor(Religious_Conflictnum)1  -0.759   0.432   -1.76  7.89e- 2
+ 6 as.factor(Religious_Conflictnum)2  -0.565   0.429   -1.32  1.87e- 1
+ 7 as.factor(LGBTQ_importancenum)2     0.385   0.0888   4.34  1.57e- 5
+ 8 as.factor(LGBTQ_importancenum)3     0.871   0.0853  10.2   1.91e-23
+ 9 as.factor(LGBTQ_importancenum)4     1.12    0.0878  12.8   6.36e-35
+10 as.factor(LGBTQ_importancenum)5     1.18    0.101   11.6   1.63e-29
+# … with abbreviated variable names ¹​std.error, ²​statistic</code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
