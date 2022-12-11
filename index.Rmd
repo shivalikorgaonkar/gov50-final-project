@@ -396,9 +396,9 @@ lgbt1 |>
   summarize(Important_People14 = mean(Important_People14, na.rm = TRUE)) |>
   ggplot(aes(x = LGBT, y = Important_People14)) +
   geom_col(fill = "burlywood4") +
-  labs(x = "LGBT identity",
+  labs(x = "LGBT Identity",
        y = "Mean Index of Coming out to Important People",
-       title = "Index of Coming Out Based on LGBT identity")
+       title = "Index of Coming Out Based on LGBT Identity")
 ```
 ```{r echo = FALSE}
 
@@ -408,9 +408,9 @@ lgbt1 |>
   summarize(Important_People14 = mean(Important_People14, na.rm = TRUE)) |>
   ggplot(aes(x = lgbt_factor, y = Important_People14)) +
   geom_col(fill = "burlywood4") +
-  labs(x = "LGBT identity",
+  labs(x = "LGBT Importance",
        y = "Mean Index of Coming out to Important People",
-       title = "Index of Coming Out Based on LGBT identity")
+       title = "Index of Coming Out Based on LGBT Importance")
 
 ```
 
