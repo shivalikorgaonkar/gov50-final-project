@@ -1,7 +1,7 @@
 ---
-title: "Gov 50 Final Project"
+title: "Coming Out Under the Lense of Religion"
 author: Shivali Korgaonkar
-description: "My final project"
+description: "GOV 50 Final Project"
 output:
   distill::distill_article:
     self_contained: false
@@ -357,6 +357,19 @@ The multivariate model suggests that, relative to those who said religion was no
 Therefore, since there is not statistical significance, we can say that religion does not have a casual impact on coming out. The null hypothesis stays in effect.
 
 It's interesting to note that the coefficients from respondents who said their LGBT identity was somewhat, not too, or not at all important were significant, holding all other variables constant. In general, the specific identity a respondent identified with also had a statistically significant impact on their coming out index. This would be something I could investigate further in another experiment, which I further discuss in the conclusion. 
+
+The multivariate regression's lack of statistical significance is highlighted even more in the visual below, where the average predicted values of all the religious importance groups lie between 3.1 and 3.25-- a very small range.
+
+```{r echo = FALSE}
+library(broom)
+library(modelsummary)
+library(sjPlot)
+
+plot_model(lgbt_multireg, type = "pred", title = c("Predicted Values of Coming Out Index Based on Identity"))$importance_factor
+
+
+```
+
 
 ## Casuality and confounders
 
