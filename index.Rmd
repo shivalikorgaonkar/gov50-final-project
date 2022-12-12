@@ -8,11 +8,11 @@ output:
 ---
 
 ## Introduction
-This projects explores the relationship between religion and coming out rates among Lesbian, Gay, Bisexual, and/or Transgender (LGBT) individuals. "Coming out" is a concept detailing when queer individuals openly express their gender or sexual identity to the public. Historically, coming out has been a daunting and risky action, as the perception of LGBT individuals varied so greatly. Following the raid at the Stonewall Inn, the gay liberation movement began in the 1960s. Pioneers, like Marsha P. Johnson and Ellen DeGeneres, took brave leaps of coming out, in order to destigmitize the act for others. Today, we've progressed into an era where queer representation has flooded the media, and *Obergefell v Hodges* has been codified. 
+This projects explores the relationship between religion and coming out rates among Lesbian, Gay, Bisexual, and Transgender (LGBT) individuals. "Coming out" is a concept detailing when queer individuals openly express their gender or sexual identity to the public. Historically, coming out has been a daunting and risky action, as the perception of LGBT individuals varied greatly. Following the raid at the Stonewall Inn, the gay liberation movement began in the 1960s. Pioneers, like Marsha P. Johnson, took brave leaps of coming out, in order to de-stigmitize the act for others. Today, we've progressed into an era where queer representation has flooded the media, and *Obergefell v Hodges* has been codified. 
 
-However, throughout this progress, one large opposition group to the LGBT community has been religious groups. Religious groups have utilized their own religious texts as a way to prove that being queer is not natural or safe. While social change has undoubtedly occurred, the liberation movement isn't over. We see many horrific actions against the LGBT community committed in the name of religion, whether it be sending kids to conversion therapy or the Orlando nightclub shooting. On the other hand, religion has shown to be a unifying factor among religious, queer individuals looking to find other people with the same inter-sectional identities. We've also seen important figures, like former presidential candidate Pete Buttigeg, express that his strong faith works with his gay identity.
+However, throughout this progress, one large opposition force to the LGBT community has been religious groups. Religious groups have utilized their own religious texts as a way to prove that being queer is not natural or safe. While social change has undoubtedly occurred, the liberation movement isn't over. We see many horrific actions against the LGBT community committed in the name of religion, whether it be continued enrollment in conversion therapy or the Orlando nightclub shooting. On the other hand, religion has shown to be a unifying factor among religious, queer individuals looking to find other people with the same inter-sectional identities. We've seen important figures, like former presidential candidate Pete Buttigeg, express that his strong faith works with his gay identity.
 
-With all this background information, I attempted to figure out if being more religious made LGBT individuals more or less likely to come out, if it had any impact at all. This tied in with data surrounding a respondent's personal experiences with religious conflict, as well as how important being LGBT was to them in relation. Finally, I looked at the perception surrounding different religions and their acceptance towards the LGBT community.
+With all this background information, I attempted to figure out if being more religious made LGBT individuals more or less likely to come out, if it has any impact at all. This tied in with data surrounding a respondent's personal experiences with religious conflict, as well as how important being LGBT was to them. Finally, I looked at the perception surrounding different religions and their acceptance towards the LGBT community.
 
 The results of this data would be useful to individuals advocating for the LGBT community today, as it could help narrow down which groups, if any, are seen to be less accepting. If religion, in fact, has a positive impact on coming out, then activists could investigate whether finding religion creates for a more smooth coming out process.
 
@@ -22,6 +22,8 @@ To answer this question, I used data from [Pew Research Center] (https://www.pew
 The research design is observational, as the explanatory variable (the importance of religion in the respondents' life) is not forced onto the respondent as a "treatment." Researchers, instead, observed a naturally assigned treatment, and I have attempted to find a correlation between the results.
 
 The main variables in this data set that are used can be found below:
+
+LGBT: LGBT identity; gay, lesbian, bisexual, transgender
 
 LGBTQ_importance: importance of LGBT identity, on a scale of 1-5
 
@@ -320,9 +322,7 @@ modelsummary(lgbt_reg, stars = TRUE,
 The bivariate model says that respondents who declared religion as not too important had an index score of coming out that was 0.079 lower than those who said religion was not at all important. For respondents who said religion was somewhat important, their coming out score was 0.174 lower that those who said religion was not at all important. Finally, for those who said religion was very important, their coming out score was 0.082 lower than someone who said religion was not at all important. 
 The somewhat importance coefficient is the only one that has statistical significance with a test level of 0.05. The other coefficients had high p-values, meaning they were not significant. Using the R-squared score to predict in-sample fit, we can see the score of 0.5% exemplify that the variance of coming out cannot be explained by the variance of religious importance.
 
-[why does somwhat important have signficance]
-
-One way to justify why only the "somewhat important" score is significant is through an analysis of a likert scale. A likert scale could provide researchers with centrally-skewed data. For people who struggle with their religious identity or don't think about it as much, "somewhat important" could be the safest option. This would also explain why "somewhat important" has the smallest predicted coming out score, as religion has a ambiguous effect in their lives. 
+Although the "somewhat important" coefficient passed the 0.05 test level, it should not be regarded as significant considering the context. All the other coefficients in the bivariate model had very small magnitudes and no significance, so it should be concluded that there is overall a lack of correlation.
 
 ```{r echo = FALSE}
 
@@ -350,14 +350,15 @@ modelsummary(lgbt_multireg, stars = TRUE,
                              "LGBTGay" = "Gay",
                              "LGBTLesbian" = "Lesbian",
                              "LGBTTransgender" = "Transgender"
-                             ))
+                             ), na.rm = TRUE,
+             title = "Multivariate Regression for the Effect of Religious Importance on Coming Out")
 
 ```
 The multivariate model suggests that, relative to those who said religion was not at all important, respondents who declared religion as not too important had an index score of coming out that was 0.041 lower, somewhat important was 0.121 lower, and very important was 0.015 lower, holding all other variables constant. However, the somewhat important coefficient because less statistically significant, as it only passed a test level of 0.1.
 
 Therefore, since there is not statistical significance, we can say that religion does not have a casual impact on coming out. The null hypothesis stays in effect.
 
-It's interesting to note that the coefficients from respondents who said their LGBT identity was somewhat, not too, or not at all important were significant, holding all other variables constant. In general, the specific identity a respondent identified with also had a statistically significant impact on their coming out index. This would be something I could investigate further in another experiment, which I further discuss in the conclusion. 
+It's interesting to note that the coefficients from respondents who said their LGBT identity was somewhat, not too, or not at all important were significant, holding all other variables constant. In general, the specific identity a respondent identified with also had a statistically significant impact on their coming out index. Both  gay and lesbian respondents came out at significant, higher indexes than bisexual respondents, but transgender respondent came out at significant, lower rates. These correlations are also highlighted in the higher R2 adj. score of the multivariate regression, which is about 31%. This would be something I could investigate further in another experiment, which I discuss in the conclusion. 
 
 The multivariate regression's lack of statistical significance is highlighted even more in the visual below, where the average predicted values of all the religious importance groups lie between 3.1 and 3.25-- a very small range.
 
@@ -376,11 +377,11 @@ plot_model(lgbt_multireg, type = "pred", title = c("Predicted Values of Coming O
 
 Since no correlation was found between religious importance and coming out rates, we cannot find causality between the variables. 
 
-There are definitely confounders that could possibly interfere with the coming out index. In the multivariate model, I attempted to control the role identifying with different religions would play, due to the variations in friendliness calculated earlier. I also controlled for the importance being LGBT has on a respondents' life, because some may have found coming out more important/necessary to them than others. I controlled for any conflict that religion played in a respondent's life, in case there was significant trauma in their relationship with religion that swayed their decision. Finally, I controlled for specific LGBT identities, in case, for example, transgender people had a harder time coming out (or maybe an easier time) because of more drastic effects of their transition.
+There are definitely confounders that could possibly interfere with the coming out index. In the multivariate model, I attempted to control the role identifying with different religions would play, due to the variations in friendliness calculated earlier. I also controlled for the importance being LGBT has on a respondents' life, because some may have found coming out more important/necessary to them than others. I controlled for any conflict that religion played in a respondent's life, in case there was significant trauma in their relationship with religion that swayed their decision. Finally, I controlled for specific LGBT identities, in case, for example, transgender people had a harder time coming out (or maybe an easier time) because of more drastic effects of their transition. The significant confounders were LGBT importance and LGBT identity. The other predicted confounders did not seem to have an influence on coming out.
 
-While these were the confounders available in my dataset, there are others that could be considered. For example, a respondent's local origin could play a role in how supportive an environment would be to coming out. Someone from a left-leaning urban area, where exposure to LGBT communities is high would likely feel more comfortable coming out, in comparison to someone who resided in an area with low exposure to LGBT communities. 
+While these were the confounders available in my dataset, there are others that could be considered. For example, a respondent's local origin could play a role in how supportive an environment would be to coming out. Someone from a left-leaning urban area, where exposure to LGBT communities is high would likely feel more comfortable coming out, in comparison to someone who resided in an area with low exposure to LGBT communities. Additionally, knowing other queer individuals would be a confounder because it could have been an encouraging factor for respondents to come out. 
 
-Additionally, it would be helpful to know the reaction of the important individuals who respondents came out to. This would allow us to see whether one early negative reaction dissuaded a respondent from coming out to any other figures in their life. 
+Adding on, it would be helpful to know the reaction of the important individuals who respondents came out to. This would allow us to see whether one early negative reaction dissuaded a respondent from coming out to any other figures in their life. 
 
 
 ## Conclusion and Next Steps
