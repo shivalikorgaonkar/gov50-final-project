@@ -17,7 +17,7 @@ With all this background information, I attempted to figure out if being more re
 The results of this data would be useful to individuals advocating for the LGBT community today, as it could help narrow down which groups, if any, are seen to be less accepting. If religion, in fact, has a positive impact on coming out, then activists could investigate whether finding religion creates for a more smooth coming out process.
 
 ## Data and research design
-To answer this question, I used data from [Pew Research Center] (https://www.pewresearch.org/social-trends/dataset/2013-lgbt-survey/). The survey data was acquired in April 2013, with responses from 1,197 self-identifying LGBT members above the age of 18. The survey asked a multitude of questions, including demographics, political opinions, social perceptions, family background, and religious importance.
+To answer this question, I used data from [Pew Research Center](https://www.pewresearch.org/social-trends/dataset/2013-lgbt-survey/). The survey data was acquired in April 2013, with responses from 1,197 self-identifying LGBT members above the age of 18. The survey asked a multitude of questions, including demographics, political opinions, social perceptions, family background, and religious importance.
 
 The research design is observational, as the explanatory variable (the importance of religion in the respondents' life) is not forced onto the respondent as a "treatment." Researchers, instead, observed a naturally assigned treatment, and I have attempted to find a correlation between the results.
 
@@ -199,7 +199,7 @@ lgbt1 |>
 
 Without regressing the data, the bivariate relationship between the importance of religion and openness in coming out can be seen below. Each bar represents the mean index at which respondents in each of the four strengths of religiousness responded to coming out. A mean of 0 would represent that all respondents of the specific religious strength came out to nobody important, while a mean of 4 would represent that all respondents of the specific religious strength came out to everybody important.
 
-```{r echo - FALSE}
+```{r echo = FALSE}
 
 lgbt1 |>
   drop_na(Religion_Importance14) |>
